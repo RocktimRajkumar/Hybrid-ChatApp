@@ -11,7 +11,7 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        <Scene key='root' style={{paddingTop : Platform.OS == 'android'? 54 : 64}}>
+        <Scene key='root' style={{ paddingTop: Platform.OS == 'android' ? 54 : 64 }}>
           <Scene key='home' component={Home} title='Home' />
           <Scene key='chat' component={Chat} title='Chat' />
         </Scene>
