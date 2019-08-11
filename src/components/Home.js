@@ -20,7 +20,7 @@ class Home extends React.Component {
     return (
       <View>
         <Text style={styles.title}>Enter your name :</Text>
-        <TextInput style={styles.nameInput} placeholder="UserName" onChangeText={(text) => {
+        <TextInput style={styles.nameInput} placeholder="username" onChangeText={(text) => {
           this.setState({
             name: text
           })
@@ -29,7 +29,7 @@ class Home extends React.Component {
           onPress={() => {
             //Navigate to the second screen and to pass it the name
             Actions.chat({
-              name : this.state.name
+              uname : this.state.name
             });
           }}
         >
