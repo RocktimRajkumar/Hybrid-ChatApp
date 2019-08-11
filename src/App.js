@@ -1,23 +1,21 @@
 import React from 'react';
-
+import { createStackNavigator, createSwitchNavigator, createAppContainer } from 'react-navigation';
 import Home from './components/Home';
-import Chat from './components/Chat';
+import LoginScreen from './components/LoginScreen';
+import AuthLoading from './components/AuthLoading';
+// Implementation of HomeScreen, OtherScreen, SignInScreen, AuthLoadingScreen
+// goes here.
 
-import { Router, Scene } from 'react-native-router-flux';
+const AppStack = createStackNavigator({ Home: Home });
+const AuthStack = createStackNavigator({ Login: LoginScreen });
 
-import { Platform } from 'react-native';
-
-class App extends React.Component {
-  render() {
-    return (
-      <Router>
-        <Scene key='root' style={{ paddingTop: Platform.OS == 'android' ? 54 : 64 }}>
-          <Scene key='home' component={Home} title='Home' />
-          <Scene key='chat' component={Chat} title='Chat' />
-        </Scene>
-      </Router>
-    );
+export default createAppContainer(createSwitchNavigator(
+  {
+    AuthLoading: AuthLoading,
+    App: AppStack,
+    Auth: AuthStack,
+  },
+  {
+    initialRouteName: 'AuthLoading',
   }
-}
-
-export default App;
+));
