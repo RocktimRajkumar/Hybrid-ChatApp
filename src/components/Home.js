@@ -5,7 +5,9 @@ import {
   Text,
   StyleSheet,
   TextInput,
-  TouchableOpacity
+  TouchableOpacity,
+  Alert,
+  AsyncStorage
 } from 'react-native';
 
 import {
@@ -14,26 +16,46 @@ import {
 
 class Home extends React.Component {
   state = {
-    name: ''
-  };
+    phone: '',
+    uname: '',
+  }
+
+  componentWillMount(){
+    AsyncStorage.getItem('userPhone').then(val=>{
+      if(val){
+        this.setState({phone:val})
+      }
+    })
+  }
+
+  submitForm = async () => {
+    if (this.state.phone.length < 10) {
+      Alert.alert('Error', 'Invalid Phone number!')
+    } else if (this.state.uname.length < 3) {
+      Alert.alert('Error', 'Invalid username!')
+    } else {
+      // save user data
+      await AsyncStorage.setItem('userPhone',this.state.phone);
+    }
+  }
+
   render() {
     return (
-      <View>
-        <Text style={styles.title}>Enter your name :</Text>
-        <TextInput style={styles.nameInput} placeholder="username" onChangeText={(text) => {
+      <View style={styles.container}>
+        <TextInput style={styles.input} placeholder="Phone number" keyboardType="number-pad" onChangeText={(text) => {
           this.setState({
-            name: text
+            phone: text
           })
-        }} value={this.state.name} />
+        }} value={this.state.phone} />
+        <TextInput style={styles.input} placeholder="Username" onChangeText={(text) => {
+          this.setState({
+            uname: text
+          })
+        }} value={this.state.uname} />
         <TouchableOpacity
-          onPress={() => {
-            //Navigate to the second screen and to pass it the name
-            Actions.chat({
-              uname : this.state.name
-            });
-          }}
+          onPress={this.submitForm}
         >
-          <Text style={styles.buttonText}>Next</Text>
+          <Text style={styles.buttonText}>Enter</Text>
         </TouchableOpacity>
       </View>
     );
@@ -41,23 +63,26 @@ class Home extends React.Component {
 }
 
 var styles = StyleSheet.create({
-  title: {
-    marginTop: 20,
-    marginLeft: 20,
-    fontSize: 20
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF'
   },
 
-  nameInput: {
-    padding: 5,
-    height: 40,
-    borderWidth: 2,
-    borderColor: 'black',
-    margin: 20,
-    fontSize: 18
+  input: {
+    padding: 10,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    width: '90%',
+    marginBottom: 10,
+    borderRadius: 5,
   },
+
   buttonText: {
+    color: 'darkblue',
     marginLeft: 20,
-    fontSize: 20
+    fontSize: 20,
   }
 });
 
