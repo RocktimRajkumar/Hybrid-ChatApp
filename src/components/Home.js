@@ -1,5 +1,7 @@
 import React from 'react';
-import { View, Text, AsyncStorage, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
+
 import User from '../User';
 import styles from '../../constants/styles';
 
