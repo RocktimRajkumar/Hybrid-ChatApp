@@ -96,7 +96,7 @@ class Chat extends React.Component {
           renderItem={this.renderRow}
           keyExtractor={(item, index) => index.toString()}
         />
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', marginHorizontal: 5 }}>
           <TextInput
             style={styles.input}
             value={this.state.textMessage}
