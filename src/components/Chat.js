@@ -30,15 +30,26 @@ class Chat extends React.Component {
     }
   }
 
-  componentDidMount(){
+  componentDidMount() {
     firebase.database().ref('message').child(User.phone).child(this.state.person.phone)
-        .on('child_added', (value)=>{
-          this.setState((prevState)=>{
-            return {
-              messageList : [...prevState.messageList, value.val()]
-            }
-          })
+      .on('child_added', (value) => {
+        this.setState((prevState) => {
+          return {
+            messageList: [...prevState.messageList, value.val()]
+          }
         })
+      })
+  }
+
+  convertTime = (time) => {
+    let d = new Date(time);
+    let c = new Date();
+    let result = (d.getHours() < 10 ? '0' : '') + d.getHours() + ':';
+    result += (d.getMinutes() < 10 ? '0' : '') + d.getMinutes();
+    if (c.getDay() != d.getDay()) {
+      result = d.getDay() + ' ' + d.getMonth() + ' ' + result;
+    }
+    return result;
   }
 
   sendMessage = async () => {
@@ -70,7 +81,7 @@ class Chat extends React.Component {
         <Text style={{ color: '#fff', padding: 7, fontSize: 16 }}>
           {item.message}
         </Text>
-        <Text style={{ color: '#eee', padding: 3, fontSize: 12 }}>{item.time}</Text>
+        <Text style={{ color: '#eee', padding: 3, fontSize: 12 }}>{this.convertTime(item.time)}</Text>
       </View>
     )
   }
