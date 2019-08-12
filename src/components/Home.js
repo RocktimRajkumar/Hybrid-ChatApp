@@ -17,7 +17,7 @@ export default class Home extends React.Component {
         fontWeight: 'bold',
       },
       headerRight: (
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
           <Image source={require('../../images/profile.png')} style={{ width: 32, height: 32, marginRight: 7 }} />
         </TouchableOpacity>
       )
