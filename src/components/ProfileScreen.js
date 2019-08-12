@@ -3,6 +3,8 @@ import { SafeAreaView, Text, TextInput, TouchableOpacity, Alert } from 'react-na
 import User from '../User';
 import styles from '../../constants/styles';
 import firebase from 'firebase';
+import AsyncStorage from '@react-native-community/async-storage';
+
 
 export default class ProfileScreen extends React.Component {
     static navigationOptions = {
@@ -17,6 +19,11 @@ export default class ProfileScreen extends React.Component {
 
     state = {
         name: User.name
+    }
+
+    _logOut = async () => {
+        await AsyncStorage.clear();
+        this.props.navigation.navigate('Auth');
     }
 
     changeName = async () => {
@@ -45,6 +52,10 @@ export default class ProfileScreen extends React.Component {
                 />
                 <TouchableOpacity onPress={this.changeName}>
                     <Text style={styles.buttonText}>Change Name</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={this._logOut}>
+                    <Text style={{ color: 'green',marginLeft: 20,fontSize: 16,}}>LogOut</Text>
                 </TouchableOpacity>
             </SafeAreaView>
         )
