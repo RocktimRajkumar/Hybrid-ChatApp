@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, View, Text, TouchableOpacity, FlatList } from 'react-native';
+import { SafeAreaView, View, Text, TouchableOpacity, FlatList, Image } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import firebase from 'firebase';
 
@@ -7,13 +7,20 @@ import User from '../User';
 import styles from '../../constants/styles';
 
 export default class Home extends React.Component {
-  static navigationOptions = {
-    title: 'Chats',
-    headerTitleStyle: {
-      textAlign: 'center',
-      flexGrow: 1,
-      alignSelf: 'center',
-      fontWeight: 'bold',
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: 'Chats',
+      headerTitleStyle: {
+        textAlign: 'center',
+        flexGrow: 1,
+        alignSelf: 'center',
+        fontWeight: 'bold',
+      },
+      headerRight : (
+        <TouchableOpacity>
+            <Image source={require('../../images/profile.png')} style={{width:32,height:32}}/>
+        </TouchableOpacity>
+      )
     }
   }
 
