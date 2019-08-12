@@ -107,8 +107,8 @@ class Chat extends React.Component {
               })
             }}
           />
-          <TouchableOpacity onPress={this.sendMessage}>
-            <Text style={styles.buttonText}>Send</Text>
+          <TouchableOpacity onPress={this.sendMessage} style={{ paddingBottom: 12, marginLeft: 0 }}>
+            <Text style={{ color: 'darkblue', fontSize: 20, marginLeft: 6 }}>Send</Text>
           </TouchableOpacity>
         </View>
       </SafeAreaView>
