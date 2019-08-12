@@ -3,10 +3,11 @@ import { createStackNavigator, createSwitchNavigator, createAppContainer } from 
 import Home from './components/Home';
 import LoginScreen from './components/LoginScreen';
 import AuthLoading from './components/AuthLoading';
+import Chat from './components/Chat';
 // Implementation of HomeScreen, OtherScreen, SignInScreen, AuthLoadingScreen
 // goes here.
 
-const AppStack = createStackNavigator({ Home: Home });
+const AppStack = createStackNavigator({ Home: Home, Chat: Chat });
 const AuthStack = createStackNavigator({ Login: LoginScreen });
 
 export default createAppContainer(createSwitchNavigator(

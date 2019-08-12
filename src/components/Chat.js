@@ -3,21 +3,25 @@ import PropTypes from 'prop-types';
 import { View, Text } from 'react-native';
 
 class Chat extends React.Component {
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: navigation.getParam('name', null),
+      headerTitleStyle: {
+        textAlign: 'center',
+        flexGrow: 1,
+        alignSelf: 'center',
+        fontWeight: 'bold',
+      }
+    }
+  }
+
   render() {
     return (
       <View>
-        <Text> Hello {this.props.uname}</Text>
+        <Text>Chat</Text>
       </View>
     );
   }
 }
-
-Chat.defaultProps = {
-  uname: 'Steve'
-};
-
-Chat.propTypes = {
-  uname: PropTypes.string
-};
 
 export default Chat;
