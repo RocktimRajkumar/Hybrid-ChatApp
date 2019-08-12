@@ -16,9 +16,9 @@ export default class Home extends React.Component {
         alignSelf: 'center',
         fontWeight: 'bold',
       },
-      headerRight : (
+      headerRight: (
         <TouchableOpacity>
-            <Image source={require('../../images/profile.png')} style={{width:32,height:32}}/>
+          <Image source={require('../../images/profile.png')} style={{ width: 32, height: 32, marginRight: 7 }} />
         </TouchableOpacity>
       )
     }
